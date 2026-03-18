@@ -298,29 +298,29 @@ Sparse subgraphs that approximately preserve shortest-path distances.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/06_spanners/greedy_spanner.png" alt="Greedy Spanner" width="100%"/><br/>
+      <img src="assets/examples/05_spanners/greedy_spanner.png" alt="Greedy Spanner" width="100%"/><br/>
       <strong>6.1 Greedy Spanner</strong><br/>
       <sub>Greedy geometric spanner (t=2.0). Near-optimal sparsity among all t-spanners.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/06_spanners/t_spanner.png" alt="t-Spanner" width="100%"/><br/>
+      <img src="assets/examples/05_spanners/t_spanner.png" alt="t-Spanner" width="100%"/><br/>
       <strong>6.2 t-Spanner</strong><br/>
       <sub>Sparse subgraph with stretch factor t=2.0. All-pairs greedy edge filtering.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/06_spanners/theta.png" alt="Theta (Θ) Graph" width="100%"/><br/>
+      <img src="assets/examples/05_spanners/theta.png" alt="Theta (Θ) Graph" width="100%"/><br/>
       <strong>6.3 Theta (Θ) Graph</strong><br/>
       <sub>Projection-based spanner with 6 cones. Stretch ≤ 2.73.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/06_spanners/wspd_spanner.png" alt="WSPD Spanner" width="100%"/><br/>
+      <img src="assets/examples/05_spanners/wspd_spanner.png" alt="WSPD Spanner" width="100%"/><br/>
       <strong>6.4 WSPD Spanner</strong><br/>
       <sub>Well-Separated Pair Decomposition spanner (s=4.0). Theoretical stretch ≤ 3.00.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/06_spanners/yao.png" alt="Yao Graph" width="100%"/><br/>
+      <img src="assets/examples/05_spanners/yao.png" alt="Yao Graph" width="100%"/><br/>
       <strong>6.5 Yao Graph</strong><br/>
       <sub>Nearest neighbor in each of 6 cones (θ=60°).</sub>
     </td>
@@ -337,34 +337,34 @@ Graphs optimized for efficient nearest neighbor search.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/hnsw.png" alt="HNSW" width="100%"/><br/>
+      <img src="assets/examples/06_ann/hnsw.png" alt="HNSW" width="100%"/><br/>
       <strong>7.1 HNSW</strong><br/>
       <sub>Hierarchical NSW: M=5, ef=32. Multi-layer skip-list-inspired ANN graph.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/lsh.png" alt="LSH-Based Graph" width="100%"/><br/>
+      <img src="assets/examples/06_ann/lsh.png" alt="LSH-Based Graph" width="100%"/><br/>
       <strong>7.2 LSH-Based Graph</strong><br/>
       <sub>k-NN via 10 hash tables × 8 bits. Random hyperplane LSH.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/nn_descent.png" alt="NN-Descent" width="100%"/><br/>
+      <img src="assets/examples/06_ann/nn_descent.png" alt="NN-Descent" width="100%"/><br/>
       <strong>7.3 NN-Descent</strong><br/>
       <sub>Iterative k-NN refinement (k=5). 'Neighbor of neighbor is likely a neighbor.'</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/nsw.png" alt="Navigable Small World" width="100%"/><br/>
+      <img src="assets/examples/06_ann/nsw.png" alt="Navigable Small World" width="100%"/><br/>
       <strong>7.4 Navigable Small World</strong><br/>
       <sub>Incremental insertion with greedy search. f=5 friends per node.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/rp_forest.png" alt="RP-Forest Graph" width="100%"/><br/>
+      <img src="assets/examples/06_ann/rp_forest.png" alt="RP-Forest Graph" width="100%"/><br/>
       <strong>7.5 RP-Forest Graph</strong><br/>
       <sub>k-NN via 10 random projection trees (leaf_size=5).</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/07_ann/vamana.png" alt="Vamana (DiskANN)" width="100%"/><br/>
+      <img src="assets/examples/06_ann/vamana.png" alt="Vamana (DiskANN)" width="100%"/><br/>
       <strong>7.6 Vamana (DiskANN)</strong><br/>
       <sub>Degree-bounded graph (R=5) with robust pruning (α=1.2). Medoid entry point.</sub>
     </td>
@@ -380,29 +380,29 @@ Graphs where edge weights come from kernel or similarity functions.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/08_kernel/adaptive_bandwidth.png" alt="Adaptive Bandwidth Kernel" width="100%"/><br/>
+      <img src="assets/examples/07_kernel/adaptive_bandwidth.png" alt="Adaptive Bandwidth Kernel" width="100%"/><br/>
       <strong>8.1 Adaptive Bandwidth Kernel</strong><br/>
       <sub>Gaussian kernel with per-point σ from 7-th neighbor distance. Self-tuning for multi-scale data.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/08_kernel/cosine.png" alt="Cosine Similarity" width="100%"/><br/>
+      <img src="assets/examples/07_kernel/cosine.png" alt="Cosine Similarity" width="100%"/><br/>
       <strong>8.2 Cosine Similarity</strong><br/>
       <sub>Connect pairs with cosine similarity > 0.8. Measures angular closeness.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/08_kernel/gaussian_rbf.png" alt="Gaussian (RBF) Kernel" width="100%"/><br/>
+      <img src="assets/examples/07_kernel/gaussian_rbf.png" alt="Gaussian (RBF) Kernel" width="100%"/><br/>
       <strong>8.3 Gaussian (RBF) Kernel</strong><br/>
       <sub>Edge weights from exp(-‖x-y‖²/2σ²). σ=median, threshold=0.1.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/08_kernel/jaccard.png" alt="Jaccard Similarity" width="100%"/><br/>
+      <img src="assets/examples/07_kernel/jaccard.png" alt="Jaccard Similarity" width="100%"/><br/>
       <strong>8.4 Jaccard Similarity</strong><br/>
       <sub>Set-overlap similarity via spatial_bin features. J(A,B) = |A∩B|/|A∪B| ≥ 0.3.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/08_kernel/thresholded.png" alt="Thresholded Similarity" width="100%"/><br/>
+      <img src="assets/examples/07_kernel/thresholded.png" alt="Thresholded Similarity" width="100%"/><br/>
       <strong>8.5 Thresholded Similarity</strong><br/>
       <sub>Binarize laplacian similarity at threshold=0.3.</sub>
     </td>
@@ -421,17 +421,17 @@ Graphs derived from geometric visibility or time series.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/09_visibility/geometric_visibility.png" alt="Geometric Visibility" width="100%"/><br/>
+      <img src="assets/examples/08_visibility/geometric_visibility.png" alt="Geometric Visibility" width="100%"/><br/>
       <strong>9.1 Geometric Visibility</strong><br/>
       <sub>Connect points with unobstructed line-of-sight. Used for shortest-path planning with obstacles.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/09_visibility/horizontal_visibility.png" alt="Horizontal Visibility Graph" width="100%"/><br/>
+      <img src="assets/examples/08_visibility/horizontal_visibility.png" alt="Horizontal Visibility Graph" width="100%"/><br/>
       <strong>9.2 Horizontal Visibility Graph</strong><br/>
       <sub>Simplified visibility: intermediate points must lie below min(y_i, y_j). Always a subgraph of the NVG.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/09_visibility/natural_visibility.png" alt="Natural Visibility Graph" width="100%"/><br/>
+      <img src="assets/examples/08_visibility/natural_visibility.png" alt="Natural Visibility Graph" width="100%"/><br/>
       <strong>9.3 Natural Visibility Graph</strong><br/>
       <sub>Time series → graph: connect points with unobstructed line-of-sight over intermediate values.</sub>
     </td>
@@ -449,29 +449,29 @@ Graphs inferred from statistical relationships between features.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/10_data_driven/correlation.png" alt="Correlation Graph" width="100%"/><br/>
+      <img src="assets/examples/09_data_driven/correlation.png" alt="Correlation Graph" width="100%"/><br/>
       <strong>10.1 Correlation Graph</strong><br/>
       <sub>Connect variables with Pearson |ρ| ≥ 0.5. From 500 synthetic observations.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/10_data_driven/expansion.png" alt="Expansion Graph" width="100%"/><br/>
+      <img src="assets/examples/09_data_driven/expansion.png" alt="Expansion Graph" width="100%"/><br/>
       <strong>10.2 Expansion Graph</strong><br/>
       <sub>Diffusion affinity graph: 3-step random walk on initial k-NN.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/10_data_driven/glasso.png" alt="Graphical LASSO" width="100%"/><br/>
+      <img src="assets/examples/09_data_driven/glasso.png" alt="Graphical LASSO" width="100%"/><br/>
       <strong>10.3 Graphical LASSO</strong><br/>
       <sub>Sparse inverse covariance estimation (α=0.1). L1 penalty auto-selects graph structure.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/10_data_driven/mutual_information.png" alt="Mutual Information" width="100%"/><br/>
+      <img src="assets/examples/09_data_driven/mutual_information.png" alt="Mutual Information" width="100%"/><br/>
       <strong>10.4 Mutual Information</strong><br/>
       <sub>MI-based edges (ksg estimator). Detects all dependencies, not just linear.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/10_data_driven/partial_correlation.png" alt="Partial Correlation" width="100%"/><br/>
+      <img src="assets/examples/09_data_driven/partial_correlation.png" alt="Partial Correlation" width="100%"/><br/>
       <strong>10.5 Partial Correlation</strong><br/>
       <sub>Gaussian graphical model: direct linear relationships via precision matrix. |ρ_partial| ≥ 0.15.</sub>
     </td>
@@ -488,24 +488,24 @@ Other notable graph construction methods.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/balltree_neighbor.png" alt="Ball Tree Neighbor Graph" width="100%"/><br/>
+      <img src="assets/examples/10_misc/balltree_neighbor.png" alt="Ball Tree Neighbor Graph" width="100%"/><br/>
       <strong>11.1 Ball Tree Neighbor Graph</strong><br/>
       <sub>k-NN (k=5) via ball tree. Handles arbitrary metrics and higher dimensions.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/disk.png" alt="Disk Graph" width="100%"/><br/>
+      <img src="assets/examples/10_misc/disk.png" alt="Disk Graph" width="100%"/><br/>
       <strong>11.2 Disk Graph</strong><br/>
       <sub>Unit disk model: connect if distance ≤ 1.00 (radius r=0.5).</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/intersection.png" alt="Intersection Graph" width="100%"/><br/>
+      <img src="assets/examples/10_misc/intersection.png" alt="Intersection Graph" width="100%"/><br/>
       <strong>11.3 Intersection Graph</strong><br/>
       <sub>Connect nodes whose circles overlap. Mean radius=0.7.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/kdtree_neighbor.png" alt="KD-Tree Neighbor Graph" width="100%"/><br/>
+      <img src="assets/examples/10_misc/kdtree_neighbor.png" alt="KD-Tree Neighbor Graph" width="100%"/><br/>
       <strong>11.4 KD-Tree Neighbor Graph</strong><br/>
       <sub>k-NN (k=5) via KD-tree. Same result as brute-force but O(n log n) construction.</sub>
     </td>
@@ -524,14 +524,14 @@ Every algorithm follows a consistent interface:
 
 ```python
 from graphgallery.points import make_two_cluster_layout
-from graphgallery.proximity import KNNGraph
+from graphgallery.proximity import SymmetricKNNGraph
 from graphgallery.viz import plot_graph
 
 # Generate the canonical 30-point layout
 points = make_two_cluster_layout(seed=42)
 
-# Build a k-NN graph
-builder = KNNGraph(k=5)
+# Build a symmetric k-NN graph (undirected union)
+builder = SymmetricKNNGraph(k=5)
 G = builder.build(points)
 
 # Visualize
