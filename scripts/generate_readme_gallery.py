@@ -25,7 +25,6 @@ from __future__ import annotations
 import argparse
 import importlib
 import sys
-import textwrap
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -69,7 +68,6 @@ def _import_all() -> None:
 SECTION_META = {
     "proximity": {
         "number": 1,
-        "emoji": "🔵",
         "title": "Proximity & Distance-Based Graphs",
         "description": (
             "Graphs built by connecting points based on spatial "
@@ -78,7 +76,6 @@ SECTION_META = {
     },
     "triangulation": {
         "number": 2,
-        "emoji": "🔺",
         "title": "Triangulation-Based Graphs",
         "description": (
             "Graphs derived from triangulations and Voronoi structures."
@@ -86,7 +83,6 @@ SECTION_META = {
     },
     "spanning": {
         "number": 3,
-        "emoji": "🌲",
         "title": "Spanning Tree-Based Graphs",
         "description": (
             "Minimal or constrained trees connecting all nodes."
@@ -94,7 +90,6 @@ SECTION_META = {
     },
     "random_models": {
         "number": 4,
-        "emoji": "🎲",
         "title": "Random Graph Models",
         "description": (
             "Probabilistic models that generate edges according to "
@@ -103,7 +98,6 @@ SECTION_META = {
     },
     "spanners": {
         "number": 5,
-        "emoji": "🧭",
         "title": "Geometric Spanners",
         "description": (
             "Sparse subgraphs that approximately preserve "
@@ -112,7 +106,6 @@ SECTION_META = {
     },
     "ann": {
         "number": 6,
-        "emoji": "🔎",
         "title": "Approximate Nearest Neighbor Graphs",
         "description": (
             "Graphs optimized for efficient nearest neighbor search."
@@ -120,7 +113,6 @@ SECTION_META = {
     },
     "kernel": {
         "number": 7,
-        "emoji": "🌀",
         "title": "Kernel & Similarity-Based Graphs",
         "description": (
             "Graphs where edge weights come from kernel or "
@@ -129,7 +121,6 @@ SECTION_META = {
     },
     "visibility": {
         "number": 8,
-        "emoji": "👁️",
         "title": "Visibility Graphs",
         "description": (
             "Graphs derived from geometric visibility or time series.\n\n"
@@ -139,7 +130,6 @@ SECTION_META = {
     },
     "data_driven": {
         "number": 9,
-        "emoji": "📊",
         "title": "Data-Driven / Learned Graphs",
         "description": (
             "Graphs inferred from statistical relationships between "
@@ -149,7 +139,6 @@ SECTION_META = {
     },
     "misc": {
         "number": 10,
-        "emoji": "🧩",
         "title": "Miscellaneous",
         "description": (
             "Other notable graph construction methods."
@@ -214,7 +203,6 @@ def generate_section_markdown(
     """
     meta = SECTION_META.get(category, {
         "number": 99,
-        "emoji": "📌",
         "title": category.replace("_", " ").title(),
         "description": "",
     })
@@ -275,7 +263,6 @@ def generate_full_gallery(
         Full gallery Markdown string.
     """
     from graphgallery.base import (
-        registry,
         list_categories,
         list_algorithms,
         get_builder,
@@ -321,7 +308,7 @@ def generate_summary_table() -> str:
     from graphgallery.base import list_categories, list_algorithms
 
     lines = []
-    lines.append("## 📊 Algorithm Comparison Table\n")
+    lines.append("## Algorithm Comparison Table\n")
     lines.append("| Category | # Algorithms | Spatial? | Deterministic? |")
     lines.append("|---|---|---|---|")
 
@@ -337,29 +324,27 @@ def generate_summary_table() -> str:
 
         # Determine spatial/deterministic from section knowledge
         spatial_map = {
-            "proximity": "✅",
-            "triangulation": "✅",
-            "spanning": "✅",
+            "proximity": "Yes",
+            "triangulation": "Yes",
+            "spanning": "Yes",
             "random_models": "Some",
-            "lattice": "❌",
-            "spanners": "✅",
-            "ann": "✅",
-            "kernel": "✅",
-            "visibility": "✅",
-            "data_driven": "❌",
+            "spanners": "Yes",
+            "ann": "Yes",
+            "kernel": "Yes",
+            "visibility": "Yes",
+            "data_driven": "No",
             "misc": "Mixed",
         }
         det_map = {
-            "proximity": "✅",
-            "triangulation": "✅",
-            "spanning": "Mostly ✅",
-            "random_models": "❌",
-            "lattice": "✅",
-            "spanners": "✅",
-            "ann": "❌",
-            "kernel": "✅",
-            "visibility": "✅",
-            "data_driven": "✅",
+            "proximity": "Yes",
+            "triangulation": "Yes",
+            "spanning": "Mostly yes",
+            "random_models": "No",
+            "spanners": "Yes",
+            "ann": "No",
+            "kernel": "Yes",
+            "visibility": "Yes",
+            "data_driven": "Yes",
             "misc": "Mixed",
         }
 
@@ -504,12 +489,8 @@ def main() -> None:
     _import_all()
 
     from graphgallery.base import (
-        registry,
         all_builders,
         list_categories,
-        list_algorithms,
-        get_builder,
-        CATEGORY_DIRECTORY_MAP,
     )
 
     n_builders = len(all_builders())

@@ -566,12 +566,12 @@ CATEGORY_DIRECTORY_MAP: dict[str, str] = {
     "triangulation":  "02_triangulation",
     "spanning":       "03_spanning",
     "random_models":  "04_random_models",
-    "spanners":       "06_spanners",
-    "ann":            "07_ann",
-    "kernel":         "08_kernel",
-    "visibility":     "09_visibility",
-    "data_driven":    "10_data_driven",
-    "misc":           "11_misc",
+    "spanners":       "05_spanners",
+    "ann":            "06_ann",
+    "kernel":         "07_kernel",
+    "visibility":     "08_visibility",
+    "data_driven":    "09_data_driven",
+    "misc":           "10_misc",
 }
 
 CATEGORY_DISPLAY_NAMES: dict[str, str] = {
