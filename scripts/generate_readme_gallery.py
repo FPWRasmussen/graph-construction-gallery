@@ -172,49 +172,37 @@ SECTION_META = {
 # Markdown generation
 # ---------------------------------------------------------------------------
 
-def generate_builder_cell(
+def _builder_cell_html(
     builder,
     image_exists: bool,
     section_number: int,
     builder_index: int,
-) -> tuple[str, str]:
-    """Generate the image cell and caption cell for one builder.
-
-    Returns:
-        (image_md, caption_md) — the two rows of a table cell.
-    """
+    cell_width: float,
+) -> str:
     image_path = builder.image_path
-
     if image_exists:
-        image_md = f"![{builder.name}]({image_path})"
+        image_html = (
+            f'<img src="{image_path}" alt="{builder.name}" width="100%"/>'
+        )
     else:
-        image_md = f"*{builder.slug}.png*"
+        image_html = f"<em>{builder.slug}.png missing</em>"
 
-    # Title with section numbering
-    title = f"**{section_number}.{builder_index} {builder.name}**"
+    title_html = f"<strong>{section_number}.{builder_index} {builder.name}</strong>"
+    description = (builder.description or "").replace("\n", " ").strip()
 
-    # Parameter string
-    params = builder.params
-    if params:
-        param_parts = []
-        for k, v in params.items():
-            if isinstance(v, float):
-                param_parts.append(f"{k}={v:.2g}")
-            elif isinstance(v, np.ndarray):
-                continue  # Skip array params
-            elif v is not None:
-                param_parts.append(f"{k}={v}")
-        if param_parts:
-            title += f" ({', '.join(param_parts)})"
+    lines = [
+        f'    <td align="center" valign="top" width="{cell_width:.0f}%">',
+        f"      {image_html}<br/>",
+        f"      {title_html}<br/>",
+    ]
 
-    # Description
-    desc = builder.description or ""
+    if description:
+        lines.append(f"      <sub>{description}</sub>")
+    else:
+        lines.append("      <sub></sub>")
 
-    caption_md = f"{title}"
-    if desc:
-        caption_md += f"\n{desc}"
-
-    return image_md, caption_md
+    lines.append("    </td>")
+    return "\n".join(lines)
 
 
 def generate_section_markdown(
@@ -245,54 +233,37 @@ def generate_section_markdown(
     lines.append(f"### {meta['number']} · {meta['title']}\n")
     lines.append(f"{meta['description']}\n")
 
-    # Build rows of ncols builders each
+    lines.append("<table>")
+    cell_width = 100 / ncols
+
     for row_start in range(0, len(builders), ncols):
         row_builders = builders[row_start:row_start + ncols]
-
-        # Pad to ncols
         while len(row_builders) < ncols:
             row_builders.append(None)
 
-        # Header row (image cells)
-        header = "| " + " | ".join([""] * ncols) + " |"
-        separator = "|" + "|".join([":---:"] * ncols) + "|"
-
-        # Image row
-        image_cells = []
-        caption_cells = []
-        desc_cells = []
-
+        lines.append("  <tr>")
         for col_idx, builder in enumerate(row_builders):
             if builder is None:
-                image_cells.append("")
-                caption_cells.append("")
-                desc_cells.append("")
+                lines.append("    <td></td>")
                 continue
 
             builder_idx = row_start + col_idx + 1
             image_path_full = assets_root / builder.image_path
             image_exists = image_path_full.exists()
 
-            img_md, cap_md = generate_builder_cell(
+            cell_html = _builder_cell_html(
                 builder,
                 image_exists,
                 meta["number"],
                 builder_idx,
+                cell_width,
             )
+            lines.append(cell_html)
 
-            image_cells.append(img_md)
+        lines.append("  </tr>")
 
-            # Split caption into title and description
-            cap_lines = cap_md.split("\n", 1)
-            caption_cells.append(cap_lines[0])
-            desc_cells.append(cap_lines[1] if len(cap_lines) > 1 else "")
-
-        lines.append(separator)
-        lines.append("| " + " | ".join(image_cells) + " |")
-        lines.append("| " + " | ".join(caption_cells) + " |")
-        lines.append("| " + " | ".join(desc_cells) + " |")
-        lines.append("")
-
+    lines.append("</table>")
+    lines.append("")
     lines.append("---\n")
 
     return "\n".join(lines)
@@ -514,13 +485,7 @@ Examples:
     parser.add_argument(
         "--with-summary",
         action="store_true",
-        default=True,
-        help="Include the algorithm comparison table (default: True).",
-    )
-    parser.add_argument(
-        "--no-summary",
-        action="store_true",
-        help="Exclude the algorithm comparison table.",
+        help="Include the algorithm comparison table.",
     )
     parser.add_argument(
         "--check-images",
@@ -593,7 +558,7 @@ def main() -> None:
     )
 
     # Optionally add summary table
-    if args.with_summary and not args.no_summary:
+    if args.with_summary:
         gallery_md += "\n" + generate_summary_table()
 
     # Output

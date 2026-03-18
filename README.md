@@ -88,25 +88,68 @@ Every graph in this gallery is constructed on **the same 30 points**: two Gaussi
 
 Graphs built by connecting points based on spatial distance or neighbor relationships.
 
-|:---:|:---:|:---:|
-| ![β-Skeleton](assets/examples/01_proximity/beta_skeleton.png) | ![Complete Graph](assets/examples/01_proximity/complete.png) | ![ε-Neighborhood](assets/examples/01_proximity/epsilon.png) |
-| **1.1 β-Skeleton** (beta=1.5) | **1.2 Complete Graph** (weighted=True) | **1.3 ε-Neighborhood** (epsilon=1.2) |
-| Generalized proximity graph with β=1.5. β=1 → Gabriel, β=2 → RNG. | Every node connected to every other node. O(n²) edges. | Connect all pairs within Euclidean distance ε=1.2. |
-
-|:---:|:---:|:---:|
-| ![Gabriel Graph](assets/examples/01_proximity/gabriel.png) | ![Sphere of Influence Graph](assets/examples/01_proximity/influence.png) | ![k-Nearest Neighbors](assets/examples/01_proximity/knn.png) |
-| **1.4 Gabriel Graph** | **1.5 Sphere of Influence Graph** | **1.6 k-Nearest Neighbors** (k=5) |
-| Connect if no other point lies inside the diametral disk. Equivalent to β-skeleton with β=1. | Each point's radius = nearest-neighbor distance. Connect if spheres overlap. | Directed graph — each node has k outgoing edges to its closest neighbors. |
-
-|:---:|:---:|:---:|
-| ![Mutual k-NN](assets/examples/01_proximity/mutual_knn.png) | ![Relative Neighborhood Graph](assets/examples/01_proximity/rng.png) | ![Symmetric k-NN](assets/examples/01_proximity/symmetric_knn.png) |
-| **1.7 Mutual k-NN** (k=5) | **1.8 Relative Neighborhood Graph** | **1.9 Symmetric k-NN** (k=5) |
-| Undirected edge only if both nodes are in each other's k-NN. | Connect if no third point is closer to both endpoints. Equivalent to β-skeleton with β=2. | Undirected edge if either node is in the other's k-NN (union). |
-
-|:---:|:---:|:---:|
-| ![Urquhart Graph](assets/examples/01_proximity/urquhart.png) |  |  |
-| **1.10 Urquhart Graph** |  |  |
-| Delaunay triangulation minus the longest edge of each triangle. Approximates the RNG. |  |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/beta_skeleton.png" alt="β-Skeleton" width="100%"/><br/>
+      <strong>1.1 β-Skeleton</strong><br/>
+      <sub>Generalized proximity graph with β=1.5. β=1 → Gabriel, β=2 → RNG.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/complete.png" alt="Complete Graph" width="100%"/><br/>
+      <strong>1.2 Complete Graph</strong><br/>
+      <sub>Every node connected to every other node. O(n²) edges.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/epsilon.png" alt="ε-Neighborhood" width="100%"/><br/>
+      <strong>1.3 ε-Neighborhood</strong><br/>
+      <sub>Connect all pairs within Euclidean distance ε=1.2.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/gabriel.png" alt="Gabriel Graph" width="100%"/><br/>
+      <strong>1.4 Gabriel Graph</strong><br/>
+      <sub>Connect if no other point lies inside the diametral disk. Equivalent to β-skeleton with β=1.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/influence.png" alt="Sphere of Influence Graph" width="100%"/><br/>
+      <strong>1.5 Sphere of Influence Graph</strong><br/>
+      <sub>Each point's radius = nearest-neighbor distance. Connect if spheres overlap.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/knn.png" alt="k-Nearest Neighbors" width="100%"/><br/>
+      <strong>1.6 k-Nearest Neighbors</strong><br/>
+      <sub>Directed graph — each node has k outgoing edges to its closest neighbors.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/mutual_knn.png" alt="Mutual k-NN" width="100%"/><br/>
+      <strong>1.7 Mutual k-NN</strong><br/>
+      <sub>Undirected edge only if both nodes are in each other's k-NN.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/rng.png" alt="Relative Neighborhood Graph" width="100%"/><br/>
+      <strong>1.8 Relative Neighborhood Graph</strong><br/>
+      <sub>Connect if no third point is closer to both endpoints. Equivalent to β-skeleton with β=2.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/symmetric_knn.png" alt="Symmetric k-NN" width="100%"/><br/>
+      <strong>1.9 Symmetric k-NN</strong><br/>
+      <sub>Undirected edge if either node is in the other's k-NN (union).</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/01_proximity/urquhart.png" alt="Urquhart Graph" width="100%"/><br/>
+      <strong>1.10 Urquhart Graph</strong><br/>
+      <sub>Delaunay triangulation minus the longest edge of each triangle. Approximates the RNG.</sub>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -114,15 +157,38 @@ Graphs built by connecting points based on spatial distance or neighbor relation
 
 Graphs derived from triangulations and Voronoi structures.
 
-|:---:|:---:|:---:|
-| ![Conforming Delaunay](assets/examples/02_triangulation/conforming_delaunay.png) | ![Constrained Delaunay](assets/examples/02_triangulation/constrained_delaunay.png) | ![Delaunay Triangulation](assets/examples/02_triangulation/delaunay.png) |
-| **2.1 Conforming Delaunay** (min_angle=20, max_area=0) | **2.2 Constrained Delaunay** | **2.3 Delaunay Triangulation** |
-| Adds Steiner points to achieve full Delaunay property with constraint edges. Supports quality refinement. | Delaunay triangulation with required edges that must appear. Uses Shewchuk's Triangle when available. | Triangulation maximizing the minimum angle. Dual of the Voronoi diagram. |
-
-|:---:|:---:|:---:|
-| ![Voronoi Dual Graph](assets/examples/02_triangulation/voronoi_dual.png) | ![Weighted (Regular) Triangulation](assets/examples/02_triangulation/weighted_triangulation.png) |  |
-| **2.4 Voronoi Dual Graph** (store_voronoi=True, finite_only=False) | **2.5 Weighted (Regular) Triangulation** (weight_scale=0.3) |  |
-| Connect points whose Voronoi cells share a boundary edge. | Delaunay generalization with per-point weights via the paraboloid lifting method. |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/02_triangulation/conforming_delaunay.png" alt="Conforming Delaunay" width="100%"/><br/>
+      <strong>2.1 Conforming Delaunay</strong><br/>
+      <sub>Adds Steiner points to achieve full Delaunay property with constraint edges. Supports quality refinement.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/02_triangulation/constrained_delaunay.png" alt="Constrained Delaunay" width="100%"/><br/>
+      <strong>2.2 Constrained Delaunay</strong><br/>
+      <sub>Delaunay triangulation with required edges that must appear. Uses Shewchuk's Triangle when available.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/02_triangulation/delaunay.png" alt="Delaunay Triangulation" width="100%"/><br/>
+      <strong>2.3 Delaunay Triangulation</strong><br/>
+      <sub>Triangulation maximizing the minimum angle. Dual of the Voronoi diagram.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/02_triangulation/voronoi_dual.png" alt="Voronoi Dual Graph" width="100%"/><br/>
+      <strong>2.4 Voronoi Dual Graph</strong><br/>
+      <sub>Connect points whose Voronoi cells share a boundary edge.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/02_triangulation/weighted_triangulation.png" alt="Weighted (Regular) Triangulation" width="100%"/><br/>
+      <strong>2.5 Weighted (Regular) Triangulation</strong><br/>
+      <sub>Delaunay generalization with per-point weights via the paraboloid lifting method.</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -130,15 +196,42 @@ Graphs derived from triangulations and Voronoi structures.
 
 Minimal or constrained trees connecting all nodes.
 
-|:---:|:---:|:---:|
-| ![Euclidean MST](assets/examples/03_spanning/emst.png) | ![k-MST Overlay](assets/examples/03_spanning/k_mst_overlay.png) | ![MST (Borůvka's)](assets/examples/03_spanning/mst_boruvka.png) |
-| **3.1 Euclidean MST** | **3.2 k-MST Overlay** (k=3, penalty=2, noise_scale=0.1) | **3.3 MST (Borůvka's)** |
-| Minimum spanning tree via Delaunay triangulation. O(n log n) instead of O(n²). | Union of 3 diverse spanning trees. Denser than a single MST but much sparser than complete. | Parallel-friendly MST: each round merges components via their cheapest outgoing edge. O(log n) rounds. |
-
-|:---:|:---:|:---:|
-| ![MST (Kruskal's)](assets/examples/03_spanning/mst_kruskal.png) | ![MST (Prim's)](assets/examples/03_spanning/mst_prim.png) | ![Random Spanning Tree](assets/examples/03_spanning/random_spanning.png) |
-| **3.4 MST (Kruskal's)** | **3.5 MST (Prim's)** (start_vertex=0) | **3.6 Random Spanning Tree** (use_weights=False) |
-| Minimum spanning tree via sorted edge insertion with Union-Find cycle detection. | Minimum spanning tree grown from a start vertex. Greedy vertex-centric approach with a priority queue. | Uniformly random spanning tree via Wilson's loop-erased random walk algorithm. |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/emst.png" alt="Euclidean MST" width="100%"/><br/>
+      <strong>3.1 Euclidean MST</strong><br/>
+      <sub>Minimum spanning tree via Delaunay triangulation. O(n log n) instead of O(n²).</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/k_mst_overlay.png" alt="k-MST Overlay" width="100%"/><br/>
+      <strong>3.2 k-MST Overlay</strong><br/>
+      <sub>Union of 3 diverse spanning trees. Denser than a single MST but much sparser than complete.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/mst_boruvka.png" alt="MST (Borůvka's)" width="100%"/><br/>
+      <strong>3.3 MST (Borůvka's)</strong><br/>
+      <sub>Parallel-friendly MST: each round merges components via their cheapest outgoing edge. O(log n) rounds.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/mst_kruskal.png" alt="MST (Kruskal's)" width="100%"/><br/>
+      <strong>3.4 MST (Kruskal's)</strong><br/>
+      <sub>Minimum spanning tree via sorted edge insertion with Union-Find cycle detection.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/mst_prim.png" alt="MST (Prim's)" width="100%"/><br/>
+      <strong>3.5 MST (Prim's)</strong><br/>
+      <sub>Minimum spanning tree grown from a start vertex. Greedy vertex-centric approach with a priority queue.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/03_spanning/random_spanning.png" alt="Random Spanning Tree" width="100%"/><br/>
+      <strong>3.6 Random Spanning Tree</strong><br/>
+      <sub>Uniformly random spanning tree via Wilson's loop-erased random walk algorithm.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -146,30 +239,85 @@ Minimal or constrained trees connecting all nodes.
 
 Probabilistic models that generate edges according to various distributions.
 
-|:---:|:---:|:---:|
-| ![Barabási–Albert](assets/examples/04_random_models/barabasi_albert.png) | ![Chung–Lu](assets/examples/04_random_models/chung_lu.png) | ![Configuration Model](assets/examples/04_random_models/configuration.png) |
-| **4.1 Barabási–Albert** (m=2) | **4.2 Chung–Lu** | **4.3 Configuration Model** (remove_self_loops=True, remove_multi_edges=True) |
-| Preferential attachment: each new node adds m=2 edges. Produces power-law degree distribution. | Random graph with specified expected degree sequence. | Random graph with a prescribed degree sequence via stub matching. |
-
-|:---:|:---:|:---:|
-| ![Erdős–Rényi G(n, m)](assets/examples/04_random_models/erdos_renyi_gnm.png) | ![Erdős–Rényi G(n, p)](assets/examples/04_random_models/erdos_renyi_gnp.png) | ![Forest Fire](assets/examples/04_random_models/forest_fire.png) |
-| **4.4 Erdős–Rényi G(n, m)** (m=60) | **4.5 Erdős–Rényi G(n, p)** (p=0.15) | **4.6 Forest Fire** (p_forward=0.35, p_backward=0.2) |
-| Exactly 60 edges chosen uniformly at random. | Each edge included independently with probability p=0.15. | Nodes burn through neighbors (p_fwd=0.35, p_bwd=0.2). Produces densification. |
-
-|:---:|:---:|:---:|
-| ![Holme–Kim](assets/examples/04_random_models/holme_kim.png) | ![Kronecker Graph](assets/examples/04_random_models/kronecker.png) | ![Price's Model](assets/examples/04_random_models/price.png) |
-| **4.7 Holme–Kim** (m=2, p=0.5) | **4.8 Kronecker Graph** | **4.9 Price's Model** (m=3, a=1) |
-| BA + triad formation: m=2, p_triad=0.5. Power-law degrees with tunable clustering. | Recursive Kronecker product of a 2×2 initiator matrix. Produces realistic heavy-tailed networks. | Directed preferential attachment (citations). m=3 out-edges, attractiveness a=1.0. |
-
-|:---:|:---:|:---:|
-| ![Random Geometric](assets/examples/04_random_models/random_geometric.png) | ![Random Regular](assets/examples/04_random_models/random_regular.png) | ![Stochastic Block Model](assets/examples/04_random_models/sbm.png) |
-| **4.10 Random Geometric** (r=1) | **4.11 Random Regular** (d=3, max_retries=100) | **4.12 Stochastic Block Model** (p_within=0.4, p_between=0.05) |
-| Connect nodes within Euclidean distance r=1.0. | Every node has exactly degree d=3. | Community structure: p_within=0.4, p_between=0.05. |
-
-|:---:|:---:|:---:|
-| ![Watts–Strogatz](assets/examples/04_random_models/watts_strogatz.png) |  |  |
-| **4.13 Watts–Strogatz** (k=4, p=0.3) |  |  |
-| Small-world model: ring lattice (k=4) with p=0.3 rewiring probability. |  |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/barabasi_albert.png" alt="Barabási–Albert" width="100%"/><br/>
+      <strong>4.1 Barabási–Albert</strong><br/>
+      <sub>Preferential attachment: each new node adds m=2 edges. Produces power-law degree distribution.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/chung_lu.png" alt="Chung–Lu" width="100%"/><br/>
+      <strong>4.2 Chung–Lu</strong><br/>
+      <sub>Random graph with specified expected degree sequence.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/configuration.png" alt="Configuration Model" width="100%"/><br/>
+      <strong>4.3 Configuration Model</strong><br/>
+      <sub>Random graph with a prescribed degree sequence via stub matching.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/erdos_renyi_gnm.png" alt="Erdős–Rényi G(n, m)" width="100%"/><br/>
+      <strong>4.4 Erdős–Rényi G(n, m)</strong><br/>
+      <sub>Exactly 60 edges chosen uniformly at random.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/erdos_renyi_gnp.png" alt="Erdős–Rényi G(n, p)" width="100%"/><br/>
+      <strong>4.5 Erdős–Rényi G(n, p)</strong><br/>
+      <sub>Each edge included independently with probability p=0.15.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/forest_fire.png" alt="Forest Fire" width="100%"/><br/>
+      <strong>4.6 Forest Fire</strong><br/>
+      <sub>Nodes burn through neighbors (p_fwd=0.35, p_bwd=0.2). Produces densification.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/holme_kim.png" alt="Holme–Kim" width="100%"/><br/>
+      <strong>4.7 Holme–Kim</strong><br/>
+      <sub>BA + triad formation: m=2, p_triad=0.5. Power-law degrees with tunable clustering.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/kronecker.png" alt="Kronecker Graph" width="100%"/><br/>
+      <strong>4.8 Kronecker Graph</strong><br/>
+      <sub>Recursive Kronecker product of a 2×2 initiator matrix. Produces realistic heavy-tailed networks.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/price.png" alt="Price's Model" width="100%"/><br/>
+      <strong>4.9 Price's Model</strong><br/>
+      <sub>Directed preferential attachment (citations). m=3 out-edges, attractiveness a=1.0.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/random_geometric.png" alt="Random Geometric" width="100%"/><br/>
+      <strong>4.10 Random Geometric</strong><br/>
+      <sub>Connect nodes within Euclidean distance r=1.0.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/random_regular.png" alt="Random Regular" width="100%"/><br/>
+      <strong>4.11 Random Regular</strong><br/>
+      <sub>Every node has exactly degree d=3.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/sbm.png" alt="Stochastic Block Model" width="100%"/><br/>
+      <strong>4.12 Stochastic Block Model</strong><br/>
+      <sub>Community structure: p_within=0.4, p_between=0.05.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/04_random_models/watts_strogatz.png" alt="Watts–Strogatz" width="100%"/><br/>
+      <strong>4.13 Watts–Strogatz</strong><br/>
+      <sub>Small-world model: ring lattice (k=4) with p=0.3 rewiring probability.</sub>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -177,20 +325,59 @@ Probabilistic models that generate edges according to various distributions.
 
 Deterministic, regular graph topologies. *These use their own canonical node positions.*
 
-|:---:|:---:|:---:|
-| ![Complete Bipartite](assets/examples/05_lattice/complete_bipartite.png) | ![Grid Graph (4-connected)](assets/examples/05_lattice/grid_2d.png) | ![Hexagonal Lattice](assets/examples/05_lattice/hexagonal.png) |
-| **5.1 Complete Bipartite** | **5.2 Grid Graph (4-connected)** (eight_connected=False) | **5.3 Hexagonal Lattice** |
-| Two sets: every node in A connects to every node in B. | Regular 2D rectangular lattice with cardinal (and optional diagonal) neighbors. | Honeycomb tiling: degree-3 interior nodes. Planar and bipartite. |
-
-|:---:|:---:|:---:|
-| ![Hypercube Graph](assets/examples/05_lattice/hypercube.png) | ![Petersen Graph](assets/examples/05_lattice/petersen.png) | ![Ring / Cycle Graph](assets/examples/05_lattice/ring.png) |
-| **5.4 Hypercube Graph** | **5.5 Petersen Graph** (n=5, k=2) | **5.6 Ring / Cycle Graph** |
-| Nodes are d-bit strings; adjacent iff Hamming distance = 1. | The classic Petersen graph: 10 nodes, 15 edges, 3-regular. Famous counterexample in graph theory. | Each node connected to exactly two neighbors on a circle. |
-
-|:---:|:---:|:---:|
-| ![Star Graph](assets/examples/05_lattice/star.png) | ![Torus Graph](assets/examples/05_lattice/torus.png) | ![Triangular Lattice](assets/examples/05_lattice/triangular_lattice.png) |
-| **5.7 Star Graph** | **5.8 Torus Graph** | **5.9 Triangular Lattice** |
-| One hub connected to all n-1 leaf nodes. Diameter = 2. | 2D grid with wrap-around edges (periodic boundaries). Degree 4 everywhere. | Grid + diagonals: degree-6 interior nodes. Dual of hexagonal lattice. |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/complete_bipartite.png" alt="Complete Bipartite" width="100%"/><br/>
+      <strong>5.1 Complete Bipartite</strong><br/>
+      <sub>Two sets: every node in A connects to every node in B.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/grid_2d.png" alt="Grid Graph (4-connected)" width="100%"/><br/>
+      <strong>5.2 Grid Graph (4-connected)</strong><br/>
+      <sub>Regular 2D rectangular lattice with cardinal (and optional diagonal) neighbors.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/hexagonal.png" alt="Hexagonal Lattice" width="100%"/><br/>
+      <strong>5.3 Hexagonal Lattice</strong><br/>
+      <sub>Honeycomb tiling: degree-3 interior nodes. Planar and bipartite.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/hypercube.png" alt="Hypercube Graph" width="100%"/><br/>
+      <strong>5.4 Hypercube Graph</strong><br/>
+      <sub>Nodes are d-bit strings; adjacent iff Hamming distance = 1.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/petersen.png" alt="Petersen Graph" width="100%"/><br/>
+      <strong>5.5 Petersen Graph</strong><br/>
+      <sub>The classic Petersen graph: 10 nodes, 15 edges, 3-regular. Famous counterexample in graph theory.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/ring.png" alt="Ring / Cycle Graph" width="100%"/><br/>
+      <strong>5.6 Ring / Cycle Graph</strong><br/>
+      <sub>Each node connected to exactly two neighbors on a circle.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/star.png" alt="Star Graph" width="100%"/><br/>
+      <strong>5.7 Star Graph</strong><br/>
+      <sub>One hub connected to all n-1 leaf nodes. Diameter = 2.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/torus.png" alt="Torus Graph" width="100%"/><br/>
+      <strong>5.8 Torus Graph</strong><br/>
+      <sub>2D grid with wrap-around edges (periodic boundaries). Degree 4 everywhere.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/05_lattice/triangular_lattice.png" alt="Triangular Lattice" width="100%"/><br/>
+      <strong>5.9 Triangular Lattice</strong><br/>
+      <sub>Grid + diagonals: degree-6 interior nodes. Dual of hexagonal lattice.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -198,15 +385,38 @@ Deterministic, regular graph topologies. *These use their own canonical node pos
 
 Sparse subgraphs that approximately preserve shortest-path distances.
 
-|:---:|:---:|:---:|
-| ![Greedy Spanner](assets/examples/06_spanners/greedy_spanner.png) | ![t-Spanner](assets/examples/06_spanners/t_spanner.png) | ![Theta (Θ) Graph](assets/examples/06_spanners/theta.png) |
-| **6.1 Greedy Spanner** (t=2) | **6.2 t-Spanner** (t=2) | **6.3 Theta (Θ) Graph** (k=6) |
-| Greedy geometric spanner (t=2.0). Near-optimal sparsity among all t-spanners. | Sparse subgraph with stretch factor t=2.0. All-pairs greedy edge filtering. | Projection-based spanner with 6 cones. Stretch ≤ 2.73. |
-
-|:---:|:---:|:---:|
-| ![WSPD Spanner](assets/examples/06_spanners/wspd_spanner.png) | ![Yao Graph](assets/examples/06_spanners/yao.png) |  |
-| **6.4 WSPD Spanner** (s=4) | **6.5 Yao Graph** (k=6) |  |
-| Well-Separated Pair Decomposition spanner (s=4.0). Theoretical stretch ≤ 3.00. | Nearest neighbor in each of 6 cones (θ=60°). |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/06_spanners/greedy_spanner.png" alt="Greedy Spanner" width="100%"/><br/>
+      <strong>6.1 Greedy Spanner</strong><br/>
+      <sub>Greedy geometric spanner (t=2.0). Near-optimal sparsity among all t-spanners.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/06_spanners/t_spanner.png" alt="t-Spanner" width="100%"/><br/>
+      <strong>6.2 t-Spanner</strong><br/>
+      <sub>Sparse subgraph with stretch factor t=2.0. All-pairs greedy edge filtering.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/06_spanners/theta.png" alt="Theta (Θ) Graph" width="100%"/><br/>
+      <strong>6.3 Theta (Θ) Graph</strong><br/>
+      <sub>Projection-based spanner with 6 cones. Stretch ≤ 2.73.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/06_spanners/wspd_spanner.png" alt="WSPD Spanner" width="100%"/><br/>
+      <strong>6.4 WSPD Spanner</strong><br/>
+      <sub>Well-Separated Pair Decomposition spanner (s=4.0). Theoretical stretch ≤ 3.00.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/06_spanners/yao.png" alt="Yao Graph" width="100%"/><br/>
+      <strong>6.5 Yao Graph</strong><br/>
+      <sub>Nearest neighbor in each of 6 cones (θ=60°).</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -214,15 +424,42 @@ Sparse subgraphs that approximately preserve shortest-path distances.
 
 Graphs optimized for efficient nearest neighbor search.
 
-|:---:|:---:|:---:|
-| ![HNSW](assets/examples/07_ann/hnsw.png) | ![LSH-Based Graph](assets/examples/07_ann/lsh.png) | ![NN-Descent](assets/examples/07_ann/nn_descent.png) |
-| **7.1 HNSW** (M=5, M0=10, ef_construction=32, mL=0.62) | **7.2 LSH-Based Graph** (k=5, n_tables=10, n_bits=8) | **7.3 NN-Descent** (k=5, max_iterations=20, delta=0.001, rho=1) |
-| Hierarchical NSW: M=5, ef=32. Multi-layer skip-list-inspired ANN graph. | k-NN via 10 hash tables × 8 bits. Random hyperplane LSH. | Iterative k-NN refinement (k=5). 'Neighbor of neighbor is likely a neighbor.' |
-
-|:---:|:---:|:---:|
-| ![Navigable Small World](assets/examples/07_ann/nsw.png) | ![RP-Forest Graph](assets/examples/07_ann/rp_forest.png) | ![Vamana (DiskANN)](assets/examples/07_ann/vamana.png) |
-| **7.4 Navigable Small World** (f=5, ef_construction=16) | **7.5 RP-Forest Graph** (k=5, n_trees=10, leaf_size=5) | **7.6 Vamana (DiskANN)** (R=5, alpha=1.2, L=20, n_passes=2) |
-| Incremental insertion with greedy search. f=5 friends per node. | k-NN via 10 random projection trees (leaf_size=5). | Degree-bounded graph (R=5) with robust pruning (α=1.2). Medoid entry point. |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/hnsw.png" alt="HNSW" width="100%"/><br/>
+      <strong>7.1 HNSW</strong><br/>
+      <sub>Hierarchical NSW: M=5, ef=32. Multi-layer skip-list-inspired ANN graph.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/lsh.png" alt="LSH-Based Graph" width="100%"/><br/>
+      <strong>7.2 LSH-Based Graph</strong><br/>
+      <sub>k-NN via 10 hash tables × 8 bits. Random hyperplane LSH.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/nn_descent.png" alt="NN-Descent" width="100%"/><br/>
+      <strong>7.3 NN-Descent</strong><br/>
+      <sub>Iterative k-NN refinement (k=5). 'Neighbor of neighbor is likely a neighbor.'</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/nsw.png" alt="Navigable Small World" width="100%"/><br/>
+      <strong>7.4 Navigable Small World</strong><br/>
+      <sub>Incremental insertion with greedy search. f=5 friends per node.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/rp_forest.png" alt="RP-Forest Graph" width="100%"/><br/>
+      <strong>7.5 RP-Forest Graph</strong><br/>
+      <sub>k-NN via 10 random projection trees (leaf_size=5).</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/07_ann/vamana.png" alt="Vamana (DiskANN)" width="100%"/><br/>
+      <strong>7.6 Vamana (DiskANN)</strong><br/>
+      <sub>Degree-bounded graph (R=5) with robust pruning (α=1.2). Medoid entry point.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -230,15 +467,38 @@ Graphs optimized for efficient nearest neighbor search.
 
 Graphs where edge weights come from kernel or similarity functions.
 
-|:---:|:---:|:---:|
-| ![Adaptive Bandwidth Kernel](assets/examples/08_kernel/adaptive_bandwidth.png) | ![Cosine Similarity](assets/examples/08_kernel/cosine.png) | ![Gaussian (RBF) Kernel](assets/examples/08_kernel/gaussian_rbf.png) |
-| **8.1 Adaptive Bandwidth Kernel** (k_bandwidth=7, threshold=0.05, sparsify_knn=0) | **8.2 Cosine Similarity** (threshold=0.8, weighted=True) | **8.3 Gaussian (RBF) Kernel** (threshold=0.1) |
-| Gaussian kernel with per-point σ from 7-th neighbor distance. Self-tuning for multi-scale data. | Connect pairs with cosine similarity > 0.8. Measures angular closeness. | Edge weights from exp(-‖x-y‖²/2σ²). σ=median, threshold=0.1. |
-
-|:---:|:---:|:---:|
-| ![Jaccard Similarity](assets/examples/08_kernel/jaccard.png) | ![Thresholded Similarity](assets/examples/08_kernel/thresholded.png) |  |
-| **8.4 Jaccard Similarity** (method=spatial_bin, threshold=0.3, method_params={}) | **8.5 Thresholded Similarity** (measure=laplacian, threshold=0.3, measure_params={}) |  |
-| Set-overlap similarity via spatial_bin features. J(A,B) = |A∩B|/|A∪B| ≥ 0.3. | Binarize laplacian similarity at threshold=0.3. |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/08_kernel/adaptive_bandwidth.png" alt="Adaptive Bandwidth Kernel" width="100%"/><br/>
+      <strong>8.1 Adaptive Bandwidth Kernel</strong><br/>
+      <sub>Gaussian kernel with per-point σ from 7-th neighbor distance. Self-tuning for multi-scale data.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/08_kernel/cosine.png" alt="Cosine Similarity" width="100%"/><br/>
+      <strong>8.2 Cosine Similarity</strong><br/>
+      <sub>Connect pairs with cosine similarity > 0.8. Measures angular closeness.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/08_kernel/gaussian_rbf.png" alt="Gaussian (RBF) Kernel" width="100%"/><br/>
+      <strong>8.3 Gaussian (RBF) Kernel</strong><br/>
+      <sub>Edge weights from exp(-‖x-y‖²/2σ²). σ=median, threshold=0.1.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/08_kernel/jaccard.png" alt="Jaccard Similarity" width="100%"/><br/>
+      <strong>8.4 Jaccard Similarity</strong><br/>
+      <sub>Set-overlap similarity via spatial_bin features. J(A,B) = |A∩B|/|A∪B| ≥ 0.3.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/08_kernel/thresholded.png" alt="Thresholded Similarity" width="100%"/><br/>
+      <strong>8.5 Thresholded Similarity</strong><br/>
+      <sub>Binarize laplacian similarity at threshold=0.3.</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -248,10 +508,25 @@ Graphs derived from geometric visibility or time series.
 
 *For time-series visibility, we sort points by x-coordinate and treat y as the series value.*
 
-|:---:|:---:|:---:|
-| ![Geometric Visibility](assets/examples/09_visibility/geometric_visibility.png) | ![Horizontal Visibility Graph](assets/examples/09_visibility/horizontal_visibility.png) | ![Natural Visibility Graph](assets/examples/09_visibility/natural_visibility.png) |
-| **9.1 Geometric Visibility** (n_auto_obstacles=5, obstacle_radius=0.3, seed=42) | **9.2 Horizontal Visibility Graph** (directed=False, use_original_indices=True) | **9.3 Natural Visibility Graph** (directed=False, use_original_indices=True) |
-| Connect points with unobstructed line-of-sight. Used for shortest-path planning with obstacles. | Simplified visibility: intermediate points must lie below min(y_i, y_j). Always a subgraph of the NVG. | Time series → graph: connect points with unobstructed line-of-sight over intermediate values. |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/09_visibility/geometric_visibility.png" alt="Geometric Visibility" width="100%"/><br/>
+      <strong>9.1 Geometric Visibility</strong><br/>
+      <sub>Connect points with unobstructed line-of-sight. Used for shortest-path planning with obstacles.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/09_visibility/horizontal_visibility.png" alt="Horizontal Visibility Graph" width="100%"/><br/>
+      <strong>9.2 Horizontal Visibility Graph</strong><br/>
+      <sub>Simplified visibility: intermediate points must lie below min(y_i, y_j). Always a subgraph of the NVG.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/09_visibility/natural_visibility.png" alt="Natural Visibility Graph" width="100%"/><br/>
+      <strong>9.3 Natural Visibility Graph</strong><br/>
+      <sub>Time series → graph: connect points with unobstructed line-of-sight over intermediate values.</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -261,15 +536,38 @@ Graphs inferred from statistical relationships between features.
 
 *Each point's (x, y) coordinates generate spatially correlated multivariate observations.*
 
-|:---:|:---:|:---:|
-| ![Correlation Graph](assets/examples/10_data_driven/correlation.png) | ![Expansion Graph](assets/examples/10_data_driven/expansion.png) | ![Graphical LASSO](assets/examples/10_data_driven/glasso.png) |
-| **10.1 Correlation Graph** (threshold=0.5, n_samples=500, length_scale=1, use_absolute=True) | **10.2 Expansion Graph** (method=diffusion, percentile=20, k_initial=5, diffusion_steps=3, diffusion_threshold=0.01) | **10.3 Graphical LASSO** (alpha=0.1, n_samples=500, length_scale=1, max_iter=200, tol=0.0001) |
-| Connect variables with Pearson |ρ| ≥ 0.5. From 500 synthetic observations. | Diffusion affinity graph: 3-step random walk on initial k-NN. | Sparse inverse covariance estimation (α=0.1). L1 penalty auto-selects graph structure. |
-
-|:---:|:---:|:---:|
-| ![Mutual Information](assets/examples/10_data_driven/mutual_information.png) | ![Partial Correlation](assets/examples/10_data_driven/partial_correlation.png) |  |
-| **10.4 Mutual Information** (threshold=0.1, n_samples=500, length_scale=1, estimator=ksg, n_bins=20, ksg_k=5, nonlinear=False) | **10.5 Partial Correlation** (threshold=0.15, n_samples=500, length_scale=1, regularization=0.01) |  |
-| MI-based edges (ksg estimator). Detects all dependencies, not just linear. | Gaussian graphical model: direct linear relationships via precision matrix. |ρ_partial| ≥ 0.15. |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/10_data_driven/correlation.png" alt="Correlation Graph" width="100%"/><br/>
+      <strong>10.1 Correlation Graph</strong><br/>
+      <sub>Connect variables with Pearson |ρ| ≥ 0.5. From 500 synthetic observations.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/10_data_driven/expansion.png" alt="Expansion Graph" width="100%"/><br/>
+      <strong>10.2 Expansion Graph</strong><br/>
+      <sub>Diffusion affinity graph: 3-step random walk on initial k-NN.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/10_data_driven/glasso.png" alt="Graphical LASSO" width="100%"/><br/>
+      <strong>10.3 Graphical LASSO</strong><br/>
+      <sub>Sparse inverse covariance estimation (α=0.1). L1 penalty auto-selects graph structure.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/10_data_driven/mutual_information.png" alt="Mutual Information" width="100%"/><br/>
+      <strong>10.4 Mutual Information</strong><br/>
+      <sub>MI-based edges (ksg estimator). Detects all dependencies, not just linear.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/10_data_driven/partial_correlation.png" alt="Partial Correlation" width="100%"/><br/>
+      <strong>10.5 Partial Correlation</strong><br/>
+      <sub>Gaussian graphical model: direct linear relationships via precision matrix. |ρ_partial| ≥ 0.15.</sub>
+    </td>
+    <td></td>
+  </tr>
+</table>
 
 ---
 
@@ -277,39 +575,53 @@ Graphs inferred from statistical relationships between features.
 
 Other notable graph construction methods.
 
-|:---:|:---:|:---:|
-| ![Ball Tree Neighbor Graph](assets/examples/11_misc/balltree_neighbor.png) | ![Cayley Graph](assets/examples/11_misc/cayley.png) | ![De Bruijn Graph](assets/examples/11_misc/debruijn.png) |
-| **11.1 Ball Tree Neighbor Graph** (k=5, radius=1, mode=knn, leaf_size=10) | **11.2 Cayley Graph** (group=cyclic, n=15) | **11.3 De Bruijn Graph** (k=2, n=5, as_undirected=True) |
-| k-NN (k=5) via ball tree. Handles arbitrary metrics and higher dimensions. | Cay(ℤ_15, generators). Algebraic structure as a graph. | B(2,5): 32 nodes from 5-length strings over 2-letter alphabet. Edges represent sequence overlaps. |
-
-|:---:|:---:|:---:|
-| ![Disk Graph](assets/examples/11_misc/disk.png) | ![Intersection Graph](assets/examples/11_misc/intersection.png) | ![KD-Tree Neighbor Graph](assets/examples/11_misc/kdtree_neighbor.png) |
-| **11.4 Disk Graph** (r=0.5, mode=uniform, adaptive_k=3, adaptive_scale=0.5) | **11.5 Intersection Graph** (shape=circle, radius_mean=0.7, radius_std=0.3) | **11.6 KD-Tree Neighbor Graph** (k=5, leaf_size=10) |
-| Unit disk model: connect if distance ≤ 1.00 (radius r=0.5). | Connect nodes whose circles overlap. Mean radius=0.7. | k-NN (k=5) via KD-tree. Same result as brute-force but O(n log n) construction. |
-
-|:---:|:---:|:---:|
-| ![Power Diagram Graph](assets/examples/11_misc/power_diagram.png) |  |  |
-| **11.7 Power Diagram Graph** (weight_scale=0.5) |  |  |
-| Dual of the weighted Voronoi diagram (Laguerre tessellation). Generalizes Voronoi dual with per-site weights. |  |  |
+<table>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/balltree_neighbor.png" alt="Ball Tree Neighbor Graph" width="100%"/><br/>
+      <strong>11.1 Ball Tree Neighbor Graph</strong><br/>
+      <sub>k-NN (k=5) via ball tree. Handles arbitrary metrics and higher dimensions.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/cayley.png" alt="Cayley Graph" width="100%"/><br/>
+      <strong>11.2 Cayley Graph</strong><br/>
+      <sub>Cay(ℤ_15, generators). Algebraic structure as a graph.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/debruijn.png" alt="De Bruijn Graph" width="100%"/><br/>
+      <strong>11.3 De Bruijn Graph</strong><br/>
+      <sub>B(2,5): 32 nodes from 5-length strings over 2-letter alphabet. Edges represent sequence overlaps.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/disk.png" alt="Disk Graph" width="100%"/><br/>
+      <strong>11.4 Disk Graph</strong><br/>
+      <sub>Unit disk model: connect if distance ≤ 1.00 (radius r=0.5).</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/intersection.png" alt="Intersection Graph" width="100%"/><br/>
+      <strong>11.5 Intersection Graph</strong><br/>
+      <sub>Connect nodes whose circles overlap. Mean radius=0.7.</sub>
+    </td>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/kdtree_neighbor.png" alt="KD-Tree Neighbor Graph" width="100%"/><br/>
+      <strong>11.6 KD-Tree Neighbor Graph</strong><br/>
+      <sub>k-NN (k=5) via KD-tree. Same result as brute-force but O(n log n) construction.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" valign="top" width="33%">
+      <img src="assets/examples/11_misc/power_diagram.png" alt="Power Diagram Graph" width="100%"/><br/>
+      <strong>11.7 Power Diagram Graph</strong><br/>
+      <sub>Dual of the weighted Voronoi diagram (Laguerre tessellation). Generalizes Voronoi dual with per-site weights.</sub>
+    </td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
 
 ---
-
-## 📊 Algorithm Comparison Table
-
-| Category | # Algorithms | Spatial? | Deterministic? |
-|---|---|---|---|
-| Proximity & Distance-Based Graphs | 10 | ✅ | ✅ |
-| Triangulation-Based Graphs | 5 | ✅ | ✅ |
-| Spanning Tree-Based Graphs | 6 | ✅ | Mostly ✅ |
-| Random Graph Models | 13 | Some | ❌ |
-| Lattice & Structured Graphs | 9 | ❌ | ✅ |
-| Geometric Spanners | 5 | ✅ | ✅ |
-| Approximate Nearest Neighbor Graphs | 6 | ✅ | ❌ |
-| Kernel & Similarity-Based Graphs | 5 | ✅ | ✅ |
-| Visibility Graphs | 3 | ✅ | ✅ |
-| Data-Driven / Learned Graphs | 5 | ❌ | ✅ |
-| Miscellaneous | 7 | Mixed | Mixed |
-| **Total** | **74** | | |
 
 <!-- GALLERY_END -->
 
@@ -410,25 +722,6 @@ pytest tests/test_proximity.py -v
 # Run with coverage
 pytest tests/ --cov=graphgallery --cov-report=html
 ```
-
----
-
-## 📊 Algorithm Comparison Table
-
-| Category | # Algorithms | Spatial? | Deterministic? |
-|---|---|---|---|
-| Proximity & Distance | 10 | ✅ | ✅ |
-| Triangulation | 5 | ✅ | ✅ |
-| Spanning Trees | 6 | ✅ | Mostly ✅ |
-| Random Models | 13 | Some | ❌ |
-| Lattice & Structured | 9 | ❌ | ✅ |
-| Geometric Spanners | 5 | ✅ | ✅ |
-| ANN Graphs | 6 | ✅ | ❌ |
-| Kernel & Similarity | 5 | ✅ | ✅ |
-| Visibility | 3 | ✅ | ✅ |
-| Data-Driven | 5 | ❌ | ✅ |
-| Miscellaneous | 7 | Mixed | Mixed |
-| **Total** | **74** | | |
 
 ---
 

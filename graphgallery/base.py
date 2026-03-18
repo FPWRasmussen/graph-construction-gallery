@@ -533,7 +533,23 @@ class GraphBuilder(abc.ABC):
         params = self.params
         if not params:
             return self.name
-        param_str = ", ".join(f"{k}={v}" for k, v in params.items())
+
+        def _is_simple(value: Any) -> bool:
+            return isinstance(value, (int, float, bool, str))
+
+        filtered = []
+        for key, value in params.items():
+            if value is None or not _is_simple(value):
+                continue
+            value_str = str(value).strip()
+            if not value_str or len(value_str) > 20:
+                continue
+            filtered.append(f"{key}={value_str}")
+
+        if not filtered:
+            return self.name
+
+        param_str = ", ".join(filtered)
         return f"{self.name} ({param_str})"
 
     def _default_subtitle(self) -> str:

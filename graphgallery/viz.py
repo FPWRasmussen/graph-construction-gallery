@@ -75,6 +75,7 @@ class PlotStyle:
     # Weighted edges
     weighted_cmap: str = "viridis"
     weighted_linewidth_range: tuple[float, float] = (0.4, 2.5)
+    show_weight_colorbar: bool = True
 
     # Directed edges (arrows)
     arrow_size: float = 8.0
@@ -97,6 +98,7 @@ class PlotStyle:
     subtitle: str = ""
     subtitle_fontsize: int = 10
     subtitle_color: str = "#666666"
+    subtitle_offset: float = 0.2  # Additional offset above the axes for subtitles
 
 
 # Default singleton style
@@ -172,7 +174,8 @@ def plot_graph(
         ax.set_axis_off()
 
     if style.tight_layout:
-        fig.tight_layout()
+        top = 0.9 if (title or subtitle or style.subtitle) else 0.97
+        fig.tight_layout(rect=(0.0, 0.0, 1.0, top))
 
     if show:
         plt.show()
@@ -273,7 +276,8 @@ def plot_points_only(
     if style.axis_off:
         ax.set_axis_off()
     if style.tight_layout:
-        fig.tight_layout()
+        top = 0.9 if (title or style.subtitle) else 0.97
+        fig.tight_layout(rect=(0.0, 0.0, 1.0, top))
     if show:
         plt.show()
 
@@ -290,6 +294,7 @@ def save_figure(
     *,
     dpi: int | None = None,
     transparent: bool = False,
+    bbox_inches: str | None = "tight",
 ) -> None:
     """Save a figure to disk and close it to free memory.
 
@@ -302,7 +307,7 @@ def save_figure(
     fig.savefig(
         path,
         dpi=dpi or fig.dpi,
-        bbox_inches="tight",
+        bbox_inches=bbox_inches,
         transparent=transparent,
         facecolor=fig.get_facecolor() if not transparent else "none",
         edgecolor="none",
@@ -448,15 +453,15 @@ def _draw_weighted_edges(
     )
     ax.add_collection(lc)
 
-    # Add a colorbar
-    sm = plt.cm.ScalarMappable(
-        cmap=cmap,
-        norm=plt.Normalize(vmin=w_min, vmax=w_max),
-    )
-    sm.set_array([])
-    cbar = ax.get_figure().colorbar(sm, ax=ax, fraction=0.03, pad=0.04)
-    cbar.ax.tick_params(labelsize=7)
-    cbar.set_label("Edge weight", fontsize=8)
+    if style.show_weight_colorbar:
+        sm = plt.cm.ScalarMappable(
+            cmap=cmap,
+            norm=plt.Normalize(vmin=w_min, vmax=w_max),
+        )
+        sm.set_array([])
+        cbar = ax.get_figure().colorbar(sm, ax=ax, fraction=0.03, pad=0.04)
+        cbar.ax.tick_params(labelsize=7)
+        cbar.set_label("Edge weight", fontsize=8)
 
 
 def _add_title(
@@ -472,13 +477,13 @@ def _add_title(
             fontsize=style.title_fontsize,
             fontweight=style.title_fontweight,
             color=style.title_color,
-            pad=12,
+            pad=34,
         )
     if subtitle:
         # Place subtitle just below the title area
         ax.text(
             0.5,
-            1.01,
+            1.02 + min(0.2, style.subtitle_offset),
             subtitle,
             transform=ax.transAxes,
             fontsize=style.subtitle_fontsize,

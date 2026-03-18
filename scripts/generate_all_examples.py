@@ -93,7 +93,7 @@ class GenerationResult:
 # ---------------------------------------------------------------------------
 
 MAX_TITLE_LENGTH = 60
-MAX_SUBTITLE_LENGTH = 90
+MAX_SUBTITLE_LENGTH = 60
 
 
 def _shorten_text(text: str, max_length: int) -> str:
@@ -185,8 +185,8 @@ def generate_single_example(
         weighted = category in ("kernel",)
 
         # Build title/subtitle with consistent lengths
-        title = _shorten_text(builder._default_title(), MAX_TITLE_LENGTH)
-        subtitle = _shorten_text(builder.description, MAX_SUBTITLE_LENGTH)
+        title = _shorten_text(builder.name, MAX_TITLE_LENGTH)
+        subtitle = _shorten_text(builder.description or "", MAX_SUBTITLE_LENGTH)
 
         # Consistent tile style across all algorithms
         style = PlotStyle(
@@ -194,6 +194,7 @@ def generate_single_example(
             dpi=dpi,
             title_fontsize=13,
             subtitle_fontsize=9,
+            subtitle_offset=0.11,
             point_size=52,
             margin=0.75,
         )
@@ -207,7 +208,7 @@ def generate_single_example(
             weighted=weighted,
         )
 
-        save_figure(fig, str(image_path), dpi=dpi)
+        save_figure(fig, str(image_path), dpi=dpi, bbox_inches=None)
         render_ms = (time.perf_counter() - t1) * 1000.0
 
         return GenerationResult(
