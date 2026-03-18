@@ -70,10 +70,6 @@ Every graph in this gallery is constructed on **the same 30 points**: two Gaussi
   <img src="assets/point_layout.png" alt="Canonical 30-point layout" width="500"/>
 </p>
 
-> **Note:** Lattice/structured graphs (Section 5) use their own canonical node positions since their topology *defines* the layout. They are shown with ~30 nodes for visual consistency.
-
-> **Note:** Visibility graphs (Section 9) interpret the x-coordinates of the points as a time series, using the y-coordinates as values.
-
 ---
 
 <!-- GALLERY_START -->
