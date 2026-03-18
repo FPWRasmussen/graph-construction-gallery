@@ -1,0 +1,171 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "graph-construction-gallery"
+version = "0.1.0"
+description = "A visual encyclopedia of 74 graph construction algorithms."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "Graph Construction Gallery Contributors"},
+]
+keywords = [
+    "graph",
+    "network",
+    "algorithm",
+    "visualization",
+    "computational-geometry",
+    "nearest-neighbor",
+    "spectral-clustering",
+    "graph-theory",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.11",
+    "networkx>=3.1",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+# Extended features (some algorithms have optional deps)
+full = [
+    "scikit-learn>=1.3",
+    "triangle>=20230923",
+    "shapely>=2.0",
+]
+# Development / testing
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "pytest-xdist>=3.3",
+    "ruff>=0.1",
+    "mypy>=1.5",
+    "pre-commit>=3.4",
+]
+# Notebooks
+notebooks = [
+    "jupyter>=1.0",
+    "ipywidgets>=8.0",
+]
+# Everything
+all = [
+    "graph-construction-gallery[full,dev,notebooks]",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/graph-construction-gallery"
+Repository = "https://github.com/yourusername/graph-construction-gallery"
+Issues = "https://github.com/yourusername/graph-construction-gallery/issues"
+Documentation = "https://github.com/yourusername/graph-construction-gallery#readme"
+
+[project.scripts]
+gallery-generate-points = "scripts.generate_points:main"
+gallery-generate-examples = "scripts.generate_all_examples:main"
+gallery-generate-readme = "scripts.generate_readme_gallery:main"
+
+# ---------------------------------------------------------------------------
+# Tool configuration
+# ---------------------------------------------------------------------------
+
+[tool.setuptools.packages.find]
+include = ["graphgallery*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--strict-markers",
+    "--tb=short",
+    "-q",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "optional: tests that require optional dependencies",
+]
+filterwarnings = [
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["graphgallery"]
+omit = [
+    "graphgallery/__pycache__/*",
+    "tests/*",
+    "scripts/*",
+    "notebooks/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_empty = true
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if __name__ == .__main__.",
+    "raise NotImplementedError",
+    "pass",
+    "except ImportError",
+]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 95
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "N",    # pep8-naming
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "RUF",  # ruff-specific rules
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "B905",   # zip without strict=
+    "SIM108", # ternary operator
+    "UP007",  # X | Y union syntax (keep Optional for clarity)
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["graphgallery"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false    # Too strict for a gallery project
+ignore_missing_imports = true     # Optional deps may not be installed
+exclude = [
+    "notebooks/",
+    "scripts/",
+]

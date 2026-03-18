@@ -1,0 +1,87 @@
+# ======================================================
+# Python
+# ======================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+*.whl
+pip-wheel-metadata/
+*.manifest
+*.spec
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# ======================================================
+# IDE / Editor
+# ======================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# ======================================================
+# OS
+# ======================================================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# ======================================================
+# Testing / Coverage
+# ======================================================
+.pytest_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# ======================================================
+# Type checking
+# ======================================================
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# ======================================================
+# Jupyter Notebooks
+# ======================================================
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# ======================================================
+# Project-specific
+# ======================================================
+
+# Generated assets (re-generate with scripts/)
+# Uncomment to track images in git:
+# !assets/point_layout.png
+# !assets/examples/
+
+# Large data files
+*.npz
+*.npy
+*.pkl
+*.pickle
+*.h5
+*.hdf5
+
+# Temporary script outputs
+*.tmp
+*.bak
