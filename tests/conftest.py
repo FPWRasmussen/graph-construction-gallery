@@ -39,7 +39,6 @@ _SUBPACKAGES = [
     "graphgallery.triangulation",
     "graphgallery.spanning",
     "graphgallery.random_models",
-    "graphgallery.lattice",
     "graphgallery.spanners",
     "graphgallery.ann",
     "graphgallery.kernel",

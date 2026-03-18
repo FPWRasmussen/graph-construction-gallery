@@ -45,7 +45,6 @@ _SUBPACKAGES = [
     "graphgallery.triangulation",
     "graphgallery.spanning",
     "graphgallery.random_models",
-    "graphgallery.lattice",
     "graphgallery.spanners",
     "graphgallery.ann",
     "graphgallery.kernel",
@@ -102,17 +101,8 @@ SECTION_META = {
             "various distributions."
         ),
     },
-    "lattice": {
-        "number": 5,
-        "emoji": "🔲",
-        "title": "Lattice & Structured Graphs",
-        "description": (
-            "Deterministic, regular graph topologies. "
-            "*These use their own canonical node positions.*"
-        ),
-    },
     "spanners": {
-        "number": 6,
+        "number": 5,
         "emoji": "🧭",
         "title": "Geometric Spanners",
         "description": (
@@ -121,7 +111,7 @@ SECTION_META = {
         ),
     },
     "ann": {
-        "number": 7,
+        "number": 6,
         "emoji": "🔎",
         "title": "Approximate Nearest Neighbor Graphs",
         "description": (
@@ -129,7 +119,7 @@ SECTION_META = {
         ),
     },
     "kernel": {
-        "number": 8,
+        "number": 7,
         "emoji": "🌀",
         "title": "Kernel & Similarity-Based Graphs",
         "description": (
@@ -138,7 +128,7 @@ SECTION_META = {
         ),
     },
     "visibility": {
-        "number": 9,
+        "number": 8,
         "emoji": "👁️",
         "title": "Visibility Graphs",
         "description": (
@@ -148,7 +138,7 @@ SECTION_META = {
         ),
     },
     "data_driven": {
-        "number": 10,
+        "number": 9,
         "emoji": "📊",
         "title": "Data-Driven / Learned Graphs",
         "description": (
@@ -158,7 +148,7 @@ SECTION_META = {
         ),
     },
     "misc": {
-        "number": 11,
+        "number": 10,
         "emoji": "🧩",
         "title": "Miscellaneous",
         "description": (
@@ -292,7 +282,7 @@ def generate_full_gallery(
     )
 
     sections = []
-    sections.append(f"## 🖼️ Gallery\n")
+    sections.append("## Gallery\n")
 
     for category in sorted(
         list_categories(),

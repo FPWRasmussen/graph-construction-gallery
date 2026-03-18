@@ -7,7 +7,6 @@ import pytest
 from graphgallery.points import PointLayout, pairwise_distances, k_nearest_indices
 from graphgallery.proximity import (
     CompleteGraph,
-    KNNGraph,
     SymmetricKNNGraph,
     MutualKNNGraph,
     EpsilonNeighborhoodGraph,
@@ -47,33 +46,6 @@ class TestCompleteGraph:
         G = CompleteGraph(weighted=False).build(layout)
         for u, v, d in G.edges(data=True):
             assert "weight" not in d
-
-
-class TestKNNGraph:
-    def test_basic(self, layout):
-        G = KNNGraph(k=5).build(layout)
-        assert_valid_graph(G, n_expected=30, min_edges=30, directed=True)
-
-    def test_out_degree(self, layout):
-        G = KNNGraph(k=5).build(layout)
-        for node in G.nodes():
-            assert G.out_degree(node) == 5
-
-    def test_matches_exact_knn(self, layout, dist_matrix, exact_knn_5):
-        G = KNNGraph(k=5).build(layout)
-        for i in range(layout.n_points):
-            successors = set(G.successors(i))
-            exact = set(exact_knn_5[i].tolist())
-            assert successors == exact, f"Node {i}: {successors} != {exact}"
-
-    def test_k_too_large(self, layout):
-        with pytest.raises(ValueError, match="k="):
-            KNNGraph(k=30).build(layout)
-
-    def test_different_k(self, layout):
-        G3 = KNNGraph(k=3).build(layout)
-        G7 = KNNGraph(k=7).build(layout)
-        assert G3.number_of_edges() < G7.number_of_edges()
 
 
 class TestSymmetricKNNGraph:

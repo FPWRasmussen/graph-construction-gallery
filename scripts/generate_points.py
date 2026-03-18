@@ -166,20 +166,13 @@ def main() -> None:
         "uniform": f"Uniform Random Layout ({args.n_points} Points)",
     }[layout_name]
 
-    subtitle = f"Seed={layout.seed}"
-    for c_id in range(layout.n_clusters):
-        spec = layout.cluster_specs[c_id]
-        subtitle += f" | {spec.label}: n={spec.n_points}"
-        if spec.std > 0:
-            subtitle += f", σ={spec.std}"
-
     fig = plot_points_only(
         layout,
         title=title,
         style=PlotStyle(
             dpi=args.dpi,
             figsize=(8, 5.5),
-            subtitle=subtitle,
+            subtitle="",
             point_size=80,
             show_node_labels=True,
             node_label_fontsize=6,

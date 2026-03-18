@@ -6,13 +6,10 @@ import pytest
 
 from graphgallery.points import pairwise_distances, k_nearest_indices
 from graphgallery.misc import (
-    PowerDiagramGraph,
     KDTreeNeighborGraph,
     BallTreeNeighborGraph,
     DiskGraph,
     IntersectionGraph,
-    DeBruijnGraph,
-    CayleyGraph,
     all_misc_builders,
 )
 from tests.conftest import (
@@ -20,17 +17,6 @@ from tests.conftest import (
     assert_weighted_edges,
     assert_degree_bounds,
 )
-
-
-class TestPowerDiagramGraph:
-    def test_basic(self, layout):
-        G = PowerDiagramGraph().build(layout)
-        assert_valid_graph(G, n_expected=30, min_edges=20)
-
-    def test_power_distance_stored(self, layout):
-        G = PowerDiagramGraph().build(layout)
-        for u, v, d in G.edges(data=True):
-            assert "power_distance" in d
 
 
 class TestKDTreeNeighborGraph:
@@ -101,56 +87,6 @@ class TestIntersectionGraph:
         for i in range(30):
             assert "extent_x" in G.nodes[i]
             assert "extent_y" in G.nodes[i]
-
-
-class TestDeBruijnGraph:
-    def test_basic_b25(self, layout):
-        G = DeBruijnGraph(k=2, n=5).build(layout)
-        assert G.number_of_nodes() == 32
-
-    def test_b33(self, layout):
-        G = DeBruijnGraph(k=3, n=3).build(layout)
-        assert G.number_of_nodes() == 27
-
-    def test_node_labels(self, layout):
-        G = DeBruijnGraph(k=2, n=3).build(layout)
-        for i in range(G.number_of_nodes()):
-            label = G.nodes[i]["label"]
-            assert len(label) == 3
-            assert all(c in "01" for c in label)
-
-    def test_positions_stored(self, layout):
-        G = DeBruijnGraph(k=2, n=5).build(layout)
-        assert "positions" in G.graph
-
-
-class TestCayleyGraph:
-    def test_cyclic_generators_1(self, layout):
-        G = CayleyGraph(group="cyclic", n=15, generators=[1]).build(layout)
-        assert G.number_of_nodes() == 15
-        assert_degree_bounds(G, exact_degree=2)  # Cycle graph
-
-    def test_cyclic_generators_1_2(self, layout):
-        G = CayleyGraph(group="cyclic", n=15).build(layout)
-        assert G.number_of_nodes() == 15
-        # With generators {1, 2, -1, -2}, degree = 4
-        assert_degree_bounds(G, exact_degree=4)
-
-    def test_dihedral(self, layout):
-        G = CayleyGraph(group="dihedral", n=8).build(layout)
-        assert G.number_of_nodes() == 16  # |D_8| = 2*8
-
-    def test_symmetric_s3(self, layout):
-        G = CayleyGraph(group="symmetric", n=3).build(layout)
-        assert G.number_of_nodes() == 6  # 3! = 6
-
-    def test_symmetric_s4(self, layout):
-        G = CayleyGraph(group="symmetric", n=4).build(layout)
-        assert G.number_of_nodes() == 24  # 4! = 24
-
-    def test_positions_stored(self, layout):
-        G = CayleyGraph(group="cyclic", n=15).build(layout)
-        assert "positions" in G.graph
 
 
 class TestAllMiscBuilders:

@@ -1,11 +1,7 @@
-<p align="center">
-  <img src="assets/banner.png" alt="Graph Construction Gallery Banner" width="800"/>
-</p>
-
-<h1 align="center">📊 Graph Construction Gallery</h1>
+<h1 align="center">Graph Construction Gallery</h1>
 
 <p align="center">
-  <strong>A visual encyclopedia of 74 graph construction algorithms, all demonstrated on the same point layout.</strong>
+  <strong>A visual encyclopedia of 58 graph construction algorithms, all demonstrated on the same point layout.</strong>
 </p>
 
 <p align="center">
@@ -18,13 +14,13 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.10%2B-blue" alt="Python 3.10+"/>
-  <img src="https://img.shields.io/badge/algorithms-74-green" alt="74 algorithms"/>
+  <img src="https://img.shields.io/badge/algorithms-58-green" alt="58 algorithms"/>
   <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="MIT License"/>
 </p>
 
 ---
 
-## 🤔 What Is This?
+## What Is This?
 
 This repository is a **comprehensive, visual reference** for graph construction algorithms. Every algorithm builds a graph from the **same set of 30 points** arranged in two clusters (a small cluster of 10 and a large cluster of 20), so you can directly compare how different methods connect the same data.
 
@@ -32,11 +28,11 @@ Whether you're studying **spectral clustering**, building **approximate nearest 
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/graph-construction-gallery.git
+git clone https://github.com/FPWRasmussen/graph-construction-gallery.git
 cd graph-construction-gallery
 
 # Install dependencies
@@ -62,7 +58,7 @@ shapely >= 2.0
 
 ---
 
-## 📍 The Canonical Point Layout
+## The Canonical Point Layout
 
 Every graph in this gallery is constructed on **the same 30 points**: two Gaussian clusters with a clear separation.
 
@@ -82,7 +78,7 @@ Every graph in this gallery is constructed on **the same 30 points**: two Gaussi
 
 <!-- GALLERY_START -->
 
-## 🖼️ Gallery
+## Gallery
 
 ### 1 · Proximity & Distance-Based Graphs
 
@@ -118,36 +114,27 @@ Graphs built by connecting points based on spatial distance or neighbor relation
       <sub>Each point's radius = nearest-neighbor distance. Connect if spheres overlap.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/01_proximity/knn.png" alt="k-Nearest Neighbors" width="100%"/><br/>
-      <strong>1.6 k-Nearest Neighbors</strong><br/>
-      <sub>Directed graph — each node has k outgoing edges to its closest neighbors.</sub>
+      <img src="assets/examples/01_proximity/mutual_knn.png" alt="Mutual k-NN" width="100%"/><br/>
+      <strong>1.6 Mutual k-NN</strong><br/>
+      <sub>Undirected edge only if both nodes are in each other's k-NN.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/01_proximity/mutual_knn.png" alt="Mutual k-NN" width="100%"/><br/>
-      <strong>1.7 Mutual k-NN</strong><br/>
-      <sub>Undirected edge only if both nodes are in each other's k-NN.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
       <img src="assets/examples/01_proximity/rng.png" alt="Relative Neighborhood Graph" width="100%"/><br/>
-      <strong>1.8 Relative Neighborhood Graph</strong><br/>
+      <strong>1.7 Relative Neighborhood Graph</strong><br/>
       <sub>Connect if no third point is closer to both endpoints. Equivalent to β-skeleton with β=2.</sub>
     </td>
     <td align="center" valign="top" width="33%">
       <img src="assets/examples/01_proximity/symmetric_knn.png" alt="Symmetric k-NN" width="100%"/><br/>
-      <strong>1.9 Symmetric k-NN</strong><br/>
+      <strong>1.8 Symmetric k-NN</strong><br/>
       <sub>Undirected edge if either node is in the other's k-NN (union).</sub>
     </td>
-  </tr>
-  <tr>
     <td align="center" valign="top" width="33%">
       <img src="assets/examples/01_proximity/urquhart.png" alt="Urquhart Graph" width="100%"/><br/>
-      <strong>1.10 Urquhart Graph</strong><br/>
+      <strong>1.9 Urquhart Graph</strong><br/>
       <sub>Delaunay triangulation minus the longest edge of each triangle. Approximates the RNG.</sub>
     </td>
-    <td></td>
-    <td></td>
   </tr>
 </table>
 
@@ -160,31 +147,14 @@ Graphs derived from triangulations and Voronoi structures.
 <table>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/02_triangulation/conforming_delaunay.png" alt="Conforming Delaunay" width="100%"/><br/>
-      <strong>2.1 Conforming Delaunay</strong><br/>
-      <sub>Adds Steiner points to achieve full Delaunay property with constraint edges. Supports quality refinement.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
       <img src="assets/examples/02_triangulation/constrained_delaunay.png" alt="Constrained Delaunay" width="100%"/><br/>
-      <strong>2.2 Constrained Delaunay</strong><br/>
+      <strong>2.1 Constrained Delaunay</strong><br/>
       <sub>Delaunay triangulation with required edges that must appear. Uses Shewchuk's Triangle when available.</sub>
     </td>
     <td align="center" valign="top" width="33%">
       <img src="assets/examples/02_triangulation/delaunay.png" alt="Delaunay Triangulation" width="100%"/><br/>
-      <strong>2.3 Delaunay Triangulation</strong><br/>
+      <strong>2.2 Delaunay Triangulation</strong><br/>
       <sub>Triangulation maximizing the minimum angle. Dual of the Voronoi diagram.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/02_triangulation/voronoi_dual.png" alt="Voronoi Dual Graph" width="100%"/><br/>
-      <strong>2.4 Voronoi Dual Graph</strong><br/>
-      <sub>Connect points whose Voronoi cells share a boundary edge.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/02_triangulation/weighted_triangulation.png" alt="Weighted (Regular) Triangulation" width="100%"/><br/>
-      <strong>2.5 Weighted (Regular) Triangulation</strong><br/>
-      <sub>Delaunay generalization with per-point weights via the paraboloid lifting method.</sub>
     </td>
     <td></td>
   </tr>
@@ -316,66 +286,6 @@ Probabilistic models that generate edges according to various distributions.
     </td>
     <td></td>
     <td></td>
-  </tr>
-</table>
-
----
-
-### 5 · Lattice & Structured Graphs
-
-Deterministic, regular graph topologies. *These use their own canonical node positions.*
-
-<table>
-  <tr>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/complete_bipartite.png" alt="Complete Bipartite" width="100%"/><br/>
-      <strong>5.1 Complete Bipartite</strong><br/>
-      <sub>Two sets: every node in A connects to every node in B.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/grid_2d.png" alt="Grid Graph (4-connected)" width="100%"/><br/>
-      <strong>5.2 Grid Graph (4-connected)</strong><br/>
-      <sub>Regular 2D rectangular lattice with cardinal (and optional diagonal) neighbors.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/hexagonal.png" alt="Hexagonal Lattice" width="100%"/><br/>
-      <strong>5.3 Hexagonal Lattice</strong><br/>
-      <sub>Honeycomb tiling: degree-3 interior nodes. Planar and bipartite.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/hypercube.png" alt="Hypercube Graph" width="100%"/><br/>
-      <strong>5.4 Hypercube Graph</strong><br/>
-      <sub>Nodes are d-bit strings; adjacent iff Hamming distance = 1.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/petersen.png" alt="Petersen Graph" width="100%"/><br/>
-      <strong>5.5 Petersen Graph</strong><br/>
-      <sub>The classic Petersen graph: 10 nodes, 15 edges, 3-regular. Famous counterexample in graph theory.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/ring.png" alt="Ring / Cycle Graph" width="100%"/><br/>
-      <strong>5.6 Ring / Cycle Graph</strong><br/>
-      <sub>Each node connected to exactly two neighbors on a circle.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/star.png" alt="Star Graph" width="100%"/><br/>
-      <strong>5.7 Star Graph</strong><br/>
-      <sub>One hub connected to all n-1 leaf nodes. Diameter = 2.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/torus.png" alt="Torus Graph" width="100%"/><br/>
-      <strong>5.8 Torus Graph</strong><br/>
-      <sub>2D grid with wrap-around edges (periodic boundaries). Degree 4 everywhere.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/05_lattice/triangular_lattice.png" alt="Triangular Lattice" width="100%"/><br/>
-      <strong>5.9 Triangular Lattice</strong><br/>
-      <sub>Grid + diagonals: degree-6 interior nodes. Dual of hexagonal lattice.</sub>
-    </td>
   </tr>
 </table>
 
@@ -583,38 +493,21 @@ Other notable graph construction methods.
       <sub>k-NN (k=5) via ball tree. Handles arbitrary metrics and higher dimensions.</sub>
     </td>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/cayley.png" alt="Cayley Graph" width="100%"/><br/>
-      <strong>11.2 Cayley Graph</strong><br/>
-      <sub>Cay(ℤ_15, generators). Algebraic structure as a graph.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/debruijn.png" alt="De Bruijn Graph" width="100%"/><br/>
-      <strong>11.3 De Bruijn Graph</strong><br/>
-      <sub>B(2,5): 32 nodes from 5-length strings over 2-letter alphabet. Edges represent sequence overlaps.</sub>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" valign="top" width="33%">
       <img src="assets/examples/11_misc/disk.png" alt="Disk Graph" width="100%"/><br/>
-      <strong>11.4 Disk Graph</strong><br/>
+      <strong>11.2 Disk Graph</strong><br/>
       <sub>Unit disk model: connect if distance ≤ 1.00 (radius r=0.5).</sub>
     </td>
     <td align="center" valign="top" width="33%">
       <img src="assets/examples/11_misc/intersection.png" alt="Intersection Graph" width="100%"/><br/>
-      <strong>11.5 Intersection Graph</strong><br/>
+      <strong>11.3 Intersection Graph</strong><br/>
       <sub>Connect nodes whose circles overlap. Mean radius=0.7.</sub>
-    </td>
-    <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/kdtree_neighbor.png" alt="KD-Tree Neighbor Graph" width="100%"/><br/>
-      <strong>11.6 KD-Tree Neighbor Graph</strong><br/>
-      <sub>k-NN (k=5) via KD-tree. Same result as brute-force but O(n log n) construction.</sub>
     </td>
   </tr>
   <tr>
     <td align="center" valign="top" width="33%">
-      <img src="assets/examples/11_misc/power_diagram.png" alt="Power Diagram Graph" width="100%"/><br/>
-      <strong>11.7 Power Diagram Graph</strong><br/>
-      <sub>Dual of the weighted Voronoi diagram (Laguerre tessellation). Generalizes Voronoi dual with per-site weights.</sub>
+      <img src="assets/examples/11_misc/kdtree_neighbor.png" alt="KD-Tree Neighbor Graph" width="100%"/><br/>
+      <strong>11.4 KD-Tree Neighbor Graph</strong><br/>
+      <sub>k-NN (k=5) via KD-tree. Same result as brute-force but O(n log n) construction.</sub>
     </td>
     <td></td>
     <td></td>
@@ -625,7 +518,7 @@ Other notable graph construction methods.
 
 <!-- GALLERY_END -->
 
-## ⚙️ API Usage
+## API Usage
 
 Every algorithm follows a consistent interface:
 
@@ -671,7 +564,7 @@ class GraphBuilder(ABC):
 ### Batch Generation
 
 ```bash
-# Generate all 74 graphs and save images
+# Generate all 58 graphs and save images
 python scripts/generate_all_examples.py
 
 # Generate only a specific category
@@ -683,34 +576,32 @@ python scripts/generate_all_examples.py --algorithm knn --k 5
 
 ---
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 graphgallery/          Core library — one subpackage per category
 ├── points.py          Canonical point layout generator
 ├── viz.py             Shared matplotlib visualization
 ├── base.py            Abstract GraphBuilder base class
-├── proximity/         10 algorithms
-├── triangulation/     5 algorithms
-├── spanning/          6 algorithms
+├── proximity/          9 algorithms
+├── triangulation/      2 algorithms
+├── spanning/           6 algorithms
 ├── random_models/     13 algorithms
-├── lattice/           9 algorithms
-├── spanners/          5 algorithms
-├── ann/               6 algorithms
-├── kernel/            5 algorithms
-├── visibility/        3 algorithms
-├── data_driven/       5 algorithms
-└── misc/              7 algorithms
+├── spanners/           5 algorithms
+├── ann/                6 algorithms
+├── kernel/             5 algorithms
+├── visibility/         3 algorithms
+├── data_driven/        5 algorithms
+└── misc/               4 algorithms
 
 scripts/               CLI tools for generation
 tests/                 pytest test suite
-notebooks/             Interactive Jupyter exploration
 assets/                Generated images and banner
 ```
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ```bash
 # Run all tests
@@ -725,7 +616,7 @@ pytest tests/ --cov=graphgallery --cov-report=html
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are welcome! To add a new graph algorithm:
 
@@ -738,12 +629,6 @@ Contributions are welcome! To add a new graph algorithm:
 
 ---
 
-## 📜 License
+## License
 
 MIT License — see [LICENSE](LICENSE) for details.
-
----
-
-<p align="center">
-  Made with 🔗 and 🐍
-</p>

@@ -1,7 +1,7 @@
 """
 Graph Construction Gallery.
 
-A comprehensive visual encyclopedia of 74 graph construction
+A comprehensive visual encyclopedia of 62 graph construction
 algorithms, all demonstrated on the same canonical point layout.
 
 Subpackages:
@@ -9,13 +9,12 @@ Subpackages:
     triangulation    5 algorithms  — Delaunay & Voronoi variants
     spanning         6 algorithms  — MST & random spanning trees
     random_models   13 algorithms  — Erdős-Rényi, BA, WS, etc.
-    lattice          9 algorithms  — grids, rings, hypercubes, etc.
     spanners         5 algorithms  — Yao, Theta, greedy spanners
     ann              6 algorithms  — NSW, HNSW, Vamana, etc.
     kernel           5 algorithms  — RBF, cosine, Jaccard, etc.
     visibility       3 algorithms  — geometric & time-series
     data_driven      5 algorithms  — correlation, GLASSO, MI, etc.
-    misc             7 algorithms  — KD-tree, De Bruijn, Cayley, etc.
+    misc             4 algorithms  — KD-tree, Ball tree, Disk, etc.
 
 Quick start:
     >>> from graphgallery.points import make_two_cluster_layout

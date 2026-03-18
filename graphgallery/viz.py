@@ -477,7 +477,7 @@ def _add_title(
             fontsize=style.title_fontsize,
             fontweight=style.title_fontweight,
             color=style.title_color,
-            pad=34,
+            pad=0,
         )
     if subtitle:
         # Place subtitle just below the title area

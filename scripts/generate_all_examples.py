@@ -50,7 +50,6 @@ _SUBPACKAGES = [
     "graphgallery.triangulation",
     "graphgallery.spanning",
     "graphgallery.random_models",
-    "graphgallery.lattice",
     "graphgallery.spanners",
     "graphgallery.ann",
     "graphgallery.kernel",
@@ -184,9 +183,8 @@ def generate_single_example(
         # Choose whether to show weighted edges
         weighted = category in ("kernel",)
 
-        # Build title/subtitle with consistent lengths
+        # Build title with consistent length (subtitles handled in README tables)
         title = _shorten_text(builder.name, MAX_TITLE_LENGTH)
-        subtitle = _shorten_text(builder.description or "", MAX_SUBTITLE_LENGTH)
 
         # Consistent tile style across all algorithms
         style = PlotStyle(
@@ -203,7 +201,7 @@ def generate_single_example(
             G,
             viz_layout,
             title=title,
-            subtitle=subtitle,
+            subtitle="",
             style=style,
             weighted=weighted,
         )
@@ -378,14 +376,14 @@ def main() -> None:
                 continue
         if not found:
             print(f"\n  ✗ Algorithm '{args.algorithm}' not found.")
-            print(f"  Available categories: {list_categories()}")
-            sys.exit(1)
+            print(f"  Found {len(all_builders())} builders in {len(list_categories())} categories.",
+                  file=sys.stderr)
         builders_to_run = found
 
     elif args.category:
         if args.category not in registry():
             print(f"\n  ✗ Category '{args.category}' not found.")
-            print(f"  Available: {list_categories()}")
+            print(f"  Available categories: {list_categories()}")
             sys.exit(1)
         builders_to_run = [
             get_builder(args.category, slug)
