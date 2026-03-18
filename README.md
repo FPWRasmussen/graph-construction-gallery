@@ -5,11 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="#-quick-start">Quick Start</a> •
-  <a href="#-the-canonical-point-layout">Point Layout</a> •
-  <a href="#-gallery">Gallery</a> •
-  <a href="#-api-usage">API</a> •
-  <a href="#-contributing">Contributing</a>
+  <a href="#quick-start">Quick Start</a> •
+  <a href="#the-canonical-point-layout">Point Layout</a> •
+  <a href="#gallery">Gallery</a> •
+  <a href="#api-usage">API</a> •
+  <a href="#contributing">Contributing</a>
 </p>
 
 <p align="center">
